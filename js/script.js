@@ -16,7 +16,7 @@ const volumeControlButton = document.querySelector('#volume-control');
 
 flipSound.volume = 0.3; 
 matchSound.volume = 1; 
-victorySound.volume = 0.5; 
+victorySound.volume = 0.5;
 backgroundSound.volume = 0.015; 
 buttonSound.volume = 1; 
 
