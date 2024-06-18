@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/game.css">
+  <script defer src="./js/script.js"></script>
+  <title>Jogo da Memória</title>
+</head>
+<body>
+  <main>
+    <div class="input-container">
+      <input type="text" class="player-input" id="player-input" placeholder="Digite seu nome">
+      <button class="start-game" id="start-button">Iniciar Jogo</button>
+    </div>
+    <header>
+      <span class="player" id="player-name"></span>
+      <span>Tempo: <span class="timer" id="timer">00</span></span>
+      <button class="restart" id="restart-button">Reiniciar</button>
+    </header>
+    <div class="grid" id="grid"></div>
+    <section class="ranking">
+      <h2>Ranking</h2>
+      <table class="ranking-table">
+        <thead>
+          <tr>
+            <th>Jogador</th>
+            <th>Tempo (s)</th>
+            <th>Tentativas</th>
+          </tr>
+        </thead>
+        <tbody id="ranking-table-body">
+        </tbody>
+      </table>
+      <button id="clear-ranking">Limpar Ranking</button>
+    </section>
+  </main>
+  <audio id="flip-sound" src="audio/flip.mp3"></audio>
+  <audio id="match-sound" src="audio/match.mp3"></audio>
+  <audio id="victory-sound" src="audio/victory.mp3"></audio>
+  <audio id="button-sound" src="audio/button.mp3"></audio>
+  <audio id="background-music" src="audio/background.mp3" loop></audio>
+</body>
+</html>
