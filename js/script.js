@@ -10,8 +10,16 @@ const clearRankingButton = document.querySelector('#clear-ranking');
 const flipSound = document.querySelector('#flip-sound');
 const matchSound = document.querySelector('#match-sound');
 const victorySound = document.querySelector('#victory-sound');
-const backgroundSound = document.querySelector('#background-sound');
+const backgroundSound = document.querySelector('#background-music');
 const buttonSound = document.querySelector('#button-sound');
+const volumeControlButton = document.querySelector('#volume-control');
+
+flipSound.volume = 0.3; 
+matchSound.volume = 1; 
+victorySound.volume = 0.5; 
+backgroundSound.volume = 0.015; 
+buttonSound.volume = 1; 
+
 
 const characters = [
   'computador-portatil',
@@ -174,8 +182,8 @@ const startGame = () => {
     startTimer();
     loadGame();
     playButtonSound();
-    backgroundSound.play();  // Iniciar a música de fundo
-
+    
+    backgroundSound.play().catch(error => console.error('Error playing background sound:', error));
   } else {
     alert('Para começar o jogo, não esqueça de digitar o seu nome na caixinha abaixo!🥰😺.');
   }
@@ -187,8 +195,8 @@ const resetGame = () => {
   grid.innerHTML = '';
   inputContainer.style.display = 'flex';
   gameStarted = false;
-  backgroundSound.pause();  // Parar a música de fundo
-  backgroundSound.currentTime = 0;  // Reiniciar a música para o início
+  backgroundSound.pause();  
+  backgroundSound.currentTime = 0;  
 }
 
 startButton.addEventListener('click', () => {
@@ -214,3 +222,17 @@ window.onload = () => {
 const playButtonSound = () => {
   buttonSound.play();
 }
+
+// Função para controlar o volume
+const toggleVolume = () => {
+  if (backgroundSound.muted) {
+    backgroundSound.muted = false;
+    volumeControlButton.innerHTML = '🔊'; // Alterar ícone para som ativado
+  } else {
+    backgroundSound.muted = true;
+    volumeControlButton.innerHTML = '🔈'; // Alterar ícone para som desativado
+  }
+}
+
+// Evento do botão de controle de volume
+volumeControlButton.addEventListener('click', toggleVolume);
