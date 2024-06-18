@@ -11,6 +11,7 @@ const flipSound = document.querySelector('#flip-sound');
 const matchSound = document.querySelector('#match-sound');
 const victorySound = document.querySelector('#victory-sound');
 const backgroundSound = document.querySelector('#background-sound');
+const buttonSound = document.querySelector('#button-sound');
 
 const characters = [
   'computador-portatil',
@@ -74,6 +75,8 @@ const checkEndGame = () => {
     alert(`Parabéns, ${playerName}! Seu tempo foi de: ${time}s!`);
     saveRanking(playerName, time, attempts);
     victorySound.play();
+    backgroundSound.pause();
+    backgroundSound.currentTime = 0;
   }
 }
 
@@ -171,6 +174,7 @@ const startGame = () => {
     startTimer();
     loadGame();
     playButtonSound();
+    backgroundSound.play();  // Iniciar a música de fundo
 
   } else {
     alert('Para começar o jogo, não esqueça de digitar o seu nome na caixinha abaixo!🥰😺.');
@@ -183,11 +187,24 @@ const resetGame = () => {
   grid.innerHTML = '';
   inputContainer.style.display = 'flex';
   gameStarted = false;
+  backgroundSound.pause();  // Parar a música de fundo
+  backgroundSound.currentTime = 0;  // Reiniciar a música para o início
 }
 
-startButton.addEventListener('click', startGame);
-restartButton.addEventListener('click', resetGame);
-clearRankingButton.addEventListener('click', clearRanking);
+startButton.addEventListener('click', () => {
+  playButtonSound();
+  startGame();
+});
+
+restartButton.addEventListener('click', () => {
+  playButtonSound();
+  resetGame();
+});
+
+clearRankingButton.addEventListener('click', () => {
+  playButtonSound();
+  clearRanking();
+});
 
 window.onload = () => {
   resetGame();
@@ -197,16 +214,3 @@ window.onload = () => {
 const playButtonSound = () => {
   buttonSound.play();
 }
-
-startButton.addEventListener('click', () => {
-  playButtonSound();
-  startGame();
-});
-restartButton.addEventListener('click', () => {
-  playButtonSound();
-  resetGame();
-});
-clearRankingButton.addEventListener('click', () => {
-  playButtonSound();
-  clearRanking();
-});
